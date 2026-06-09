@@ -38,7 +38,11 @@ if path.exists():
                 result = pd.DataFrame(data)
                 print(result.to_string())
             elif category == "c":
-                pass
+                bottom_3 = dict(list(sorted_data.items())[-3:])
+                data = {"product": [k for k in bottom_3.keys()],
+                        "quantity_sold": [v for v in bottom_3.values()]}
+                result = pd.DataFrame(data)
+                print(result.to_string())
             else:
                 print("Option not available")
         elif option == "3":
