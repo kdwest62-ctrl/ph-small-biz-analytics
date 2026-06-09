@@ -23,7 +23,7 @@ if path.exists():
         if option == "1":
             print(df.to_string())
         elif option == "2":
-            print("a. Rankings | b. Top Seller | c. Low Seller")
+            print("a. Full Rankings | b. Top-3 Seller | c. Bottom-3 Seller")
             category = input("Choose category (letter): ")
             if category == "a":
                 sorted_data = dict(sorted(reference.items(), key=lambda i: i[1], reverse=True))
