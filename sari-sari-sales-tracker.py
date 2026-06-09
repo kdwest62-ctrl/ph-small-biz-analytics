@@ -17,6 +17,7 @@ if path.exists():
         elif column_data.count(item) == 1:
             quantity_sold.append(df[df['product'] == item]['quantity_sold'].values[0])
     reference = dict(zip(products, quantity_sold))
+    sorted_data = dict(sorted(reference.items(), key=lambda i: i[1], reverse=True))
     print("1. CSV\n2. Sales\n3. Revenue\n4. Exit")
     while True:
         option = input("Select option (number): ")
@@ -26,13 +27,16 @@ if path.exists():
             print("a. Full Rankings | b. Top-3 | c. Bottom-3")
             category = input("Choose category (letter): ")
             if category == "a":
-                sorted_data = dict(sorted(reference.items(), key=lambda i: i[1], reverse=True))
                 data = {"product": [k for k in sorted_data.keys()],
                         "quantity_sold": [v for v in sorted_data.values()]}
                 result = pd.DataFrame(data)
                 print(result.to_string())
             elif category == "b":
-                pass
+                top_3 = dict(list(sorted_data.items())[:3])
+                data = {"product": [k for k in top_3.keys()],
+                        "quantity_sold": [v for v in top_3.values()]}
+                result = pd.DataFrame(data)
+                print(result.to_string())
             elif category == "c":
                 pass
             else:
