@@ -1,5 +1,6 @@
 import pandas as pd
 from pathlib import Path
+import matplotlib.pyplot as plt
 
 path = Path(input("CSV path: "))
 if path.exists():
@@ -30,7 +31,11 @@ if path.exists():
                 print("i. Line Chart\nii. Pie Chart")
                 chart = input("Chart: ")
                 if chart == "i":
-                    pass
+                    quantity_dict = df.groupby('date')['quantity_sold'].sum().to_dict()
+                    x = [num for num in range(1, len(quantity_dict.keys()) + 1)]
+                    y = [v for v in quantity_dict.values()]
+                    plt.plot(x, y)
+                    plt.show()
                 elif chart == "ii":
                     pass
                 else:
