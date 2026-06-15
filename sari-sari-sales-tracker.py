@@ -12,7 +12,7 @@ if path.exists():
             print(df.to_string())
             print("-" * 8)
         elif option == "2":
-            print("a. Sales\nb. Revenue\nc. Profit\nd. Inventory")
+            print("a. Sales | b. Revenue | c. Profit | d. Inventory")
             rankings = input("Select rankings: ")
             if rankings == "a":
                 sales = df.groupby("product")["quantity_sold"].sum().sort_values(ascending=False)
