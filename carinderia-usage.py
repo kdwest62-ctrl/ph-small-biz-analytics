@@ -2,4 +2,31 @@ import pandas as pd
 
 path = input("CSV path: ")
 df = pd.read_csv(path)
-print(df.to_string())
+menu = ["1. Data",
+        "2. Data Aggregation",
+        "3. Average Usage per Day Type",
+        "4. Data Simulation",
+        "5. Actual vs Predicted Usage",
+        "6. Forecast Ingredient Needs",
+        "7. Exit"]
+for item in menu:
+    print(item)
+while True:
+    option = input("Select option: ")
+    if option == "1":
+        print(df.to_string())
+    elif option == "2":
+        pass
+    elif option == "3":
+        pass
+    elif option == "4":
+        pass
+    elif option == "5":
+        pass
+    elif option == "6":
+        pass
+    elif option == "7":
+        print("Program closed")
+        break
+    else:
+        print("Invalid input")
