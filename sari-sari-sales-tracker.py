@@ -19,9 +19,9 @@ if path.exists():
             quantity_sold.append(df[df['product'] == item]['quantity_sold'].values[0])
     reference = dict(zip(products, quantity_sold))
     sorted_data = dict(sorted(reference.items(), key=lambda i: i[1], reverse=True))
-    print("1. CSV\n2. Sales\n3. Revenue\n4. Exit")
+    print("1. Data\n2. Sales\n3. Revenue\n4. Profit\n5. Inventory\n6. Exit")
     while True:
-        option = input("Option: ")
+        option = input("Select option: ")
         if option == "1":
             print(df.to_string())
         elif option == "2":
