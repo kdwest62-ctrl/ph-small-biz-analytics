@@ -10,12 +10,14 @@ if path.exists():
         option = input("Select option: ")
         if option == "1":
             print(df.to_string())
+            print("-" * 8)
         elif option == "2":
             print("a. Sales\nb. Revenue\nc. Profit\nd. Inventory")
             rankings = input("Select rankings: ")
             if rankings == "a":
                 sales = df.groupby("product")["quantity_sold"].sum().sort_values(ascending=False)
                 print(sales)
+                print("-" * 8)
             elif rankings == "b":
                 pass
             elif rankings == "c":
