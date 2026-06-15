@@ -5,9 +5,9 @@ df = pd.read_csv(path)
 menu = ["1. Data",
         "2. Data Aggregation",
         "3. Average Usage per Day Type",
-        "4. Data Simulation",
+        "4. Forecast Ingredient Needs",
         "5. Actual vs Predicted Usage",
-        "6. Forecast Ingredient Needs",
+        "6. Data Simulation"
         "7. Exit"]
 for item in menu:
     print(item)
