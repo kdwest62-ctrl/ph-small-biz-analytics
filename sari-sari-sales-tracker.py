@@ -19,7 +19,11 @@ if path.exists():
                 print(sales)
                 print("-" * 8)
             elif rankings == "b":
-                pass
+                revenue = (df.assign(Revenue=df['quantity_sold'] * df['price'])
+                          .groupby('product')['Revenue']
+                          .sum().sort_values(ascending=False))
+                print(revenue)
+                print("-" * 8)
             elif rankings == "c":
                 pass
             elif rankings == "d":
