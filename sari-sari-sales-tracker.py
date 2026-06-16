@@ -1,5 +1,6 @@
 import pandas as pd
 from pathlib import Path
+import numpy as np
 
 path = Path(input('CSV path: '))
 if path.exists():
@@ -10,14 +11,23 @@ if path.exists():
         if entry not in products:
             products.append(entry)
     quantity_sold = []
+    prices = []
     for product in products:
         if column_data.count(product) > 1:
             prod = df[df['product'] == product]
             sales = prod['quantity_sold'].tolist()
+            price = prod['price'].tolist()
             quantity_sold.append(sum(sales))
+            prices.append(price[0])
         elif column_data.count(product) == 1:
             sales = df[df['product'] == product]['quantity_sold'].values[0]
+            price = df[df['product'] == product]['price'].values[0]
             quantity_sold.append(sales)
+            prices.append(price)
+    arr1 = np.array(quantity_sold)
+    arr2 = np.array(prices)
+    revenue = np.multiply(arr1, arr2)
+    print(revenue)
     print('Menu')
     print('1. Data\n2. Sales\n3. Revenue\n4. Profit\n5. Inventory\n6. Exit')
     while True:
@@ -31,6 +41,7 @@ if path.exists():
             result = pd.DataFrame(data)
             res = result.groupby('product')['sales'].sum().sort_values(ascending=False)
             print(res.to_string())
+            print('-' * 8)
         elif option == '3':
             pass
         elif option == '4':
