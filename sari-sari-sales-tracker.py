@@ -28,7 +28,7 @@ if path.exists():
     arr2 = np.array(prices)
     revenue = np.multiply(arr1, arr2)
     print('Menu')
-    print('1. Data\n2. Sales\n3. Revenue\n4. Profit\n5. Inventory\n6. Exit')
+    print('1. Data\n2. Quantity Sold\n3. Revenue\n4. Profit\n5. Inventory\n6. Exit')
     while True:
         option = input('Select option: ')
         if option == '1':
@@ -36,18 +36,18 @@ if path.exists():
             print('-' * 8)
         elif option == '2':
             data = {'product': [i for i in products],
-                    'sales': [i for i in quantity_sold]}
+                    'quantity_sold': [i for i in quantity_sold]}
             result = pd.DataFrame(data)
-            res = result.groupby('product')['sales'].sum().sort_values(ascending=False)
+            res = result.groupby('product')['quantity_sold'].sum().sort_values(ascending=False)
             print(res.to_string())
             print('-' * 8)
         elif option == '3':
             data = {'product': [i for i in products],
-                    'sales': [i for i in quantity_sold],
+                    'quantity_sold': [i for i in quantity_sold],
                     'price': [i for i in prices],
                     'revenue': [i for i in revenue]}
             result = pd.DataFrame(data)
-            res = result.groupby(['product', 'sales', 'price'])['revenue'].sum().sort_values(ascending=False)
+            res = result.groupby(['product', 'quantity_sold', 'price'])['revenue'].sum().sort_values(ascending=False)
             print(res.to_string())
             print('-' * 8)
         elif option == '4':
