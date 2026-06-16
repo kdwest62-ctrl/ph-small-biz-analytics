@@ -27,7 +27,6 @@ if path.exists():
     arr1 = np.array(quantity_sold)
     arr2 = np.array(prices)
     revenue = np.multiply(arr1, arr2)
-    print(revenue)
     print('Menu')
     print('1. Data\n2. Sales\n3. Revenue\n4. Profit\n5. Inventory\n6. Exit')
     while True:
@@ -43,7 +42,14 @@ if path.exists():
             print(res.to_string())
             print('-' * 8)
         elif option == '3':
-            pass
+            data = {'product': [i for i in products],
+                    'sales': [i for i in quantity_sold],
+                    'price': [i for i in prices],
+                    'revenue': [i for i in revenue]}
+            result = pd.DataFrame(data)
+            res = result.groupby(['product', 'sales', 'price'])['revenue'].sum().sort_values(ascending=False)
+            print(res.to_string())
+            print('-' * 8)
         elif option == '4':
             pass
         elif option == '5':
