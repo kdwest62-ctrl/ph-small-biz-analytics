@@ -68,7 +68,24 @@ if path.exists():
             print(res.to_string())
             print('-' * 8)
         elif option == '5':
-            pass
+            reference = dict(zip(products, quantity_sold))
+            orders = []
+            for p in products:
+                order = int(input(f'Quantity sold for {p}: {reference[p]} | items ordered: '))
+                if order >= reference[p]:
+                    orders.append(order)
+                else:
+                    print('Items ordered cannot be less than quantity sold')
+                    print(f'Items ordered for {p}: 0')
+                    orders.append(0)
+            orders = np.array(orders)
+            quantity_sold = np.array(quantity_sold)
+            stocks = np.subtract(orders, quantity_sold)
+            data = {'product': [i for i in products], 'orders': [i for i in orders],
+                    'quantity_sold': [i for i in quantity_sold], 'stocks': [i for i in stocks]}
+            inventory = pd.DataFrame(data)
+            res = inventory.groupby('product')['stocks'].sum().sort_values(ascending=False)
+            print(res.to_string())
         elif option == '6':
             print('Program closed')
             break
