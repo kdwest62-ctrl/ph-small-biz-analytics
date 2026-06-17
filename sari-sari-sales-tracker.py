@@ -51,7 +51,22 @@ if path.exists():
             print(res.to_string())
             print('-' * 8)
         elif option == '4':
-            pass
+            exp = []
+            for p in products:
+                expense = int(input(f"Total expenses for {p}: "))
+                exp.append(expense)
+            expenses = np.array(exp)
+            profits = np.subtract(sales, expenses)
+            data = {'product': [i for i in products],
+                    'quantity_sold': [i for i in quantity_sold],
+                    'price': [i for i in prices],
+                    'sales': [i for i in sales],
+                    'expenses': [i for i in expenses],
+                    'profit': [i for i in profits]}
+            profit = pd.DataFrame(data)
+            res = profit.groupby(['product', 'quantity_sold', 'price', 'sales', 'expenses'])['profit'].sum().sort_values(ascending=False)
+            print(res.to_string())
+            print('-' * 8)
         elif option == '5':
             pass
         elif option == '6':
