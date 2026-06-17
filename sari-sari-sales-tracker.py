@@ -72,7 +72,7 @@ try:
                 reference = dict(zip(products, quantity_sold))
                 orders = []
                 for p in products:
-                    order = int(input(f'Quantity sold for {p}: {reference[p]} | items ordered: '))
+                    order = int(input(f'{p} sold {reference[p]} | items ordered: '))
                     if order >= reference[p]:
                         orders.append(order)
                     else:
