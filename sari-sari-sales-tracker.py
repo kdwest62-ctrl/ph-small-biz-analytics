@@ -54,7 +54,7 @@ try:
             elif option == '4':
                 exp = []
                 for p in products:
-                    expense = int(input(f"Total expenses for {p}: "))
+                    expense = int(input(f'Total expenses for {p}: '))
                     exp.append(expense)
                 expenses = np.array(exp)
                 profits = np.subtract(sales, expenses)
