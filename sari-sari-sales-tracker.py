@@ -32,6 +32,9 @@ try:
             arr1 = np.array(quantity_sold)
             arr2 = np.array(prices)
             sales = np.multiply(arr1, arr2)
+            ref1 = dict(zip(products, quantity_sold))
+            ref2 = dict(zip(products, prices))
+            ref3 = dict(zip(products, sales))
             print('Menu')
             print('1. Data\n2. Quantity Sold\n3. Sales\n4. Profit\n5. Inventory\n6. Exit')
             while True:
@@ -40,11 +43,11 @@ try:
                     print(df.to_string())
                     print('-' * 8)
                 elif option == '2':
-                    data = {'product': [i for i in products],
-                            'quantity_sold': [i for i in quantity_sold]}
+                    sorted_data = dict(sorted(ref1.items(), key=lambda item: item[1], reverse=True))
+                    data = {'product': [i for i in sorted_data.keys()],
+                            'quantity_sold': [i for i in sorted_data.values()]}
                     result = pd.DataFrame(data)
-                    res = result.groupby('product')['quantity_sold'].sum().sort_values(ascending=False)
-                    print(res.to_string())
+                    print(result.to_string())
                     print('-' * 8)
                 elif option == '3':
                     data = {'product': [i for i in products],
