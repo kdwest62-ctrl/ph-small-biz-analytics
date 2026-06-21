@@ -16,7 +16,25 @@ if path.exists():
             end_index = int(input('End date (number): '))
             end_index += 1
             new_df = df.iloc[start_index:end_index].copy()
-            print(new_df)
+            print('Menu')
+            print('1. CSV\n2. Quantity Sold\n3. Sales\n4. Profit\n5. Inventory\n6. Exit')
+            while True:
+                choice = input('Select option: ')
+                if choice == '1':
+                    pass
+                elif choice == '2':
+                    pass
+                elif choice == '3':
+                    pass
+                elif choice == '4':
+                    pass
+                elif choice == '5':
+                    pass
+                elif choice == '6':
+                    print('Program closed')
+                    break
+                else:
+                    print('Invalid choice')
         else:
             print('One or more columns are missing')
     else:
