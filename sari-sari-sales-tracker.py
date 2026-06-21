@@ -21,7 +21,7 @@ if path.exists():
             while True:
                 choice = input('Select option: ')
                 if choice == '1':
-                    pass
+                    print(new_df.to_string())
                 elif choice == '2':
                     pass
                 elif choice == '3':
