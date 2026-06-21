@@ -4,9 +4,9 @@ import pandas as pd
 path = Path(input('CSV path: '))
 if path.exists():
     if path.suffix == '.csv':
-        check = pd.read_csv(path, nrows=0)
+        check_csv = pd.read_csv(path, nrows=0)
         required_columns = ['date', 'product', 'quantity_sold', 'price']
-        all_exist = set(required_columns).issubset(check.columns)
+        all_exist = set(required_columns).issubset(check_csv.columns)
         if all_exist:
             print('Test successful')
         else:
