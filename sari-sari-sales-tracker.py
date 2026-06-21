@@ -12,8 +12,8 @@ if path.exists():
             dates = df['date'].tolist()
             dates_dict = dict(enumerate(dates))
             print(dates_dict)
-            start_index = int(input('Start index: '))
-            end_index = int(input('End index: '))
+            start_index = int(input('Start date (number): '))
+            end_index = int(input('End date (number): '))
             end_index += 1
             new_df = df.iloc[start_index:end_index].copy()
             print(new_df)
