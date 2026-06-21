@@ -11,7 +11,8 @@ if path.exists():
             df = pd.read_csv(path)
             dates = df['date'].tolist()
             dates_dict = dict(enumerate(dates))
-            print(dates_dict)
+            for k, v in dates_dict.items():
+                print(k, v)
             start_index = int(input('Start date (number): '))
             end_index = int(input('End date (number): '))
             end_index += 1
