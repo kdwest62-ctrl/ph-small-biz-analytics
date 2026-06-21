@@ -9,7 +9,9 @@ if path.exists():
         all_exist = set(required_columns).issubset(check_csv.columns)
         if all_exist:
             df = pd.read_csv(path)
-            print(f'CSV index 0 to {len(df) - 1}')
+            dates = df['date'].tolist()
+            dates_dict = dict(enumerate(dates))
+            print(dates_dict)
             start_index = int(input('Start index: '))
             end_index = int(input('End index: '))
             end_index += 1
