@@ -1,9 +1,16 @@
 from pathlib import Path
+import pandas as pd
 
 path = Path(input('CSV path: '))
 if path.exists():
     if path.suffix == '.csv':
-        pass
+        check = pd.read_csv(path, nrows=0)
+        required_columns = ['date', 'product', 'quantity_sold', 'price']
+        all_exist = set(required_columns).issubset(check.columns)
+        if all_exist:
+            print('Test successful')
+        else:
+            print('One or more columns are missing')
     else:
         print('File not CSV')
 else:
