@@ -8,7 +8,12 @@ if path.exists():
         required_columns = ['date', 'product', 'quantity_sold', 'price']
         all_exist = set(required_columns).issubset(check_csv.columns)
         if all_exist:
-            print('Test successful')
+            df = pd.read_csv(path)
+            start_index = int(input('Start index: '))
+            end_index = int(input('End index: '))
+            end_index += 1
+            new_df = df.iloc[start_index:end_index].copy()
+            print(new_df)
         else:
             print('One or more columns are missing')
     else:
