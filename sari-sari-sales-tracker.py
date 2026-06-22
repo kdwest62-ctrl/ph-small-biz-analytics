@@ -1,5 +1,6 @@
 from pathlib import Path
 import pandas as pd
+import numpy as np
 
 path = Path(input('CSV path: '))
 if path.exists():
@@ -14,8 +15,8 @@ if path.exists():
             end_index = int(input('End date (number): '))
             end_index += 1
             new_df = df.iloc[start_index:end_index].copy()
-            column_data = new_df['product'].tolist()
             products = []
+            column_data = new_df['product'].tolist()
             for entry in column_data:
                 if entry not in products:
                     products.append(entry)
@@ -33,6 +34,9 @@ if path.exists():
                     price = new_df[new_df['product'] == product]['price'].values[0]
                     quantity_sold.append(sales)
                     prices.append(price)
+            arr1 = np.array(quantity_sold)
+            arr2 = np.array(prices)
+            sales = np.multiply(arr1, arr2)
             print('Menu')
             print('1. CSV\n2. Quantity Sold\n3. Sales\n4. Profit\n5. Inventory\n6. Exit')
             while True:
