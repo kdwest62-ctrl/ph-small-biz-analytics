@@ -59,7 +59,7 @@ if path.exists():
                         exp.append(expense)
                     expenses = np.array(exp)
                     profits = np.subtract(sales, expenses)
-                    print(profits)
+                    print(create_df('profit', profits))
                 elif rankings == '4':
                     orders = []
                     for p in products:
