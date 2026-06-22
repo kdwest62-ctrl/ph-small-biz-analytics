@@ -40,22 +40,20 @@ if path.exists():
             ref1 = dict(zip(products, quantity_sold))
             ref2 = dict(zip(products, prices))
             ref3 = dict(zip(products, sales))
-            print('Menu')
-            print('1. CSV\n2. Quantity Sold\n3. Sales\n4. Profit\n5. Inventory\n6. Exit')
+            print('Rankings')
+            print('1. Quantity Sold\n2. Sales\n3. Profit\n4. Inventory\n5. Exit')
             while True:
                 choice = input('Select option: ')
                 if choice == '1':
-                    print(new_df.to_string())
-                elif choice == '2':
                     reference = dict(zip(products, quantity_sold))
                     print(reference)
+                elif choice == '2':
+                    pass
                 elif choice == '3':
                     pass
                 elif choice == '4':
                     pass
                 elif choice == '5':
-                    pass
-                elif choice == '6':
                     print('Program closed')
                     break
                 else:
