@@ -9,14 +9,30 @@ if path.exists():
         all_exist = set(required_columns).issubset(check_csv.columns)
         if all_exist:
             df = pd.read_csv(path)
-            dates = df['date'].tolist()
-            dates_dict = dict(enumerate(dates))
-            for k, v in dates_dict.items():
-                print(k, v)
+            print(df.to_string())
             start_index = int(input('Start date (number): '))
             end_index = int(input('End date (number): '))
             end_index += 1
             new_df = df.iloc[start_index:end_index].copy()
+            column_data = new_df['product'].tolist()
+            products = []
+            for entry in column_data:
+                if entry not in products:
+                    products.append(entry)
+            quantity_sold = []
+            prices = []
+            for product in products:
+                if column_data.count(product) > 1:
+                    prod = new_df[new_df['product'] == product]
+                    sales = prod['quantity_sold'].tolist()
+                    price = prod['price'].tolist()
+                    quantity_sold.append(sum(sales))
+                    prices.append(price[0])
+                elif column_data.count(product) == 1:
+                    sales = new_df[new_df['product'] == product]['quantity_sold'].values[0]
+                    price = new_df[new_df['product'] == product]['price'].values[0]
+                    quantity_sold.append(sales)
+                    prices.append(price)
             print('Menu')
             print('1. CSV\n2. Quantity Sold\n3. Sales\n4. Profit\n5. Inventory\n6. Exit')
             while True:
@@ -24,7 +40,8 @@ if path.exists():
                 if choice == '1':
                     print(new_df.to_string())
                 elif choice == '2':
-                    pass
+                    reference = dict(zip(products, quantity_sold))
+                    print(reference)
                 elif choice == '3':
                     pass
                 elif choice == '4':
