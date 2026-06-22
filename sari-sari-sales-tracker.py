@@ -40,20 +40,25 @@ if path.exists():
             ref1 = dict(zip(products, quantity_sold))
             ref2 = dict(zip(products, prices))
             ref3 = dict(zip(products, sales))
-            print('Rankings')
             print('1. Quantity Sold\n2. Sales\n3. Profit\n4. Inventory\n5. Exit')
             while True:
-                choice = input('Select option: ')
-                if choice == '1':
-                    reference = dict(zip(products, quantity_sold))
-                    print(reference)
-                elif choice == '2':
+                rankings = input('Select rankings: ')
+                if rankings == '1':
+                    print(ref1)
+                elif rankings == '2':
+                    print(sales)
+                elif rankings == '3':
+                    exp = []
+                    print('Input total expenses for each product')
+                    for p in products:
+                        expense = int(input(f'{p}: '))
+                        exp.append(expense)
+                    expenses = np.array(exp)
+                    profits = np.subtract(sales, expenses)
+                    print(profits)
+                elif rankings == '4':
                     pass
-                elif choice == '3':
-                    pass
-                elif choice == '4':
-                    pass
-                elif choice == '5':
+                elif rankings == '5':
                     print('Program closed')
                     break
                 else:
