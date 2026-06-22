@@ -73,6 +73,7 @@ if path.exists():
                     orders = np.array(orders)
                     quantity_sold = np.array(quantity_sold)
                     stocks = np.subtract(orders, quantity_sold)
+                    print(create_df('stocks', stocks))
                 elif rankings == '5':
                     print('Program closed')
                     break
