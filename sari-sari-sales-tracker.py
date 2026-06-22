@@ -15,6 +15,10 @@ if path.exists():
             end_index = int(input('End date (number): '))
             end_index += 1
             new_df = df.iloc[start_index:end_index].copy()
+            def create_df(col_name, col_data):
+                data = {'product': [i for i in products], col_name: [i for i in col_data]}
+                return pd.DataFrame(data)
+
             products = []
             column_data = new_df['product'].tolist()
             for entry in column_data:
@@ -44,9 +48,9 @@ if path.exists():
             while True:
                 rankings = input('Select rankings: ')
                 if rankings == '1':
-                    print(ref1)
+                    print(create_df('quantity_sold', ref1.values()))
                 elif rankings == '2':
-                    print(sales)
+                    print(create_df('sales', ref3.values()))
                 elif rankings == '3':
                     exp = []
                     print('Input total expenses for each product')
