@@ -57,7 +57,18 @@ if path.exists():
                     profits = np.subtract(sales, expenses)
                     print(profits)
                 elif rankings == '4':
-                    pass
+                    orders = []
+                    for p in products:
+                        order = int(input(f'{p} sold {ref1[p]} | items ordered: '))
+                        if order >= ref1[p]:
+                            orders.append(order)
+                        else:
+                            print('Items ordered cannot be less than quantity sold')
+                            print(f'Items ordered for {p}: 0')
+                            orders.append(0)
+                    orders = np.array(orders)
+                    quantity_sold = np.array(quantity_sold)
+                    stocks = np.subtract(orders, quantity_sold)
                 elif rankings == '5':
                     print('Program closed')
                     break
