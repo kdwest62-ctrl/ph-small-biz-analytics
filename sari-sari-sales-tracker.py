@@ -37,6 +37,9 @@ if path.exists():
             arr1 = np.array(quantity_sold)
             arr2 = np.array(prices)
             sales = np.multiply(arr1, arr2)
+            ref1 = dict(zip(products, quantity_sold))
+            ref2 = dict(zip(products, prices))
+            ref3 = dict(zip(products, sales))
             print('Menu')
             print('1. CSV\n2. Quantity Sold\n3. Sales\n4. Profit\n5. Inventory\n6. Exit')
             while True:
