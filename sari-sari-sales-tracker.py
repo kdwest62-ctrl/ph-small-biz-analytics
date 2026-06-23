@@ -25,7 +25,7 @@ if path.exists():
             def create_df(col_name, col_data):
                 data = {'product': [i for i in products], col_name: [i for i in col_data]}
                 return pd.DataFrame(data)
-            def bar_char(c, v, col_name, plot_title):
+            def bar_chart(c, v, col_name, plot_title):
                 categories = [i for i in c]
                 values = [i for i in v]
                 plt.bar(categories, values, color='skyblue')
