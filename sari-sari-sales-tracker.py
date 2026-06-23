@@ -1,6 +1,7 @@
 from pathlib import Path
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 path = Path(input('CSV path: '))
 if path.exists():
@@ -13,6 +14,7 @@ if path.exists():
                 if c == 'full':
                     return d
                 elif c == 'filter':
+                    print(d.to_string())
                     start_index = int(input('Start date (number): '))
                     end_index = int(input('End date (number): '))
                     end_index += 1
@@ -23,10 +25,17 @@ if path.exists():
             def create_df(col_name, col_data):
                 data = {'product': [i for i in products], col_name: [i for i in col_data]}
                 return pd.DataFrame(data)
+            def bar_char(c, v, col_name, plot_title):
+                categories = [i for i in c]
+                values = [i for i in v]
+                plt.bar(categories, values, color='skyblue')
+                plt.xlabel('Product')
+                plt.ylabel(col_name)
+                plt.title(plot_title)
+                plt.show()
             df = pd.read_csv(path)
             csv_choice = input('Use full CSV or filter dates (full/filter): ')
             new_df = func_name(df, csv_choice)
-
             products = []
             column_data = new_df['product'].tolist()
             for entry in column_data:
