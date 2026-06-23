@@ -66,7 +66,24 @@ if path.exists():
             while True:
                 option = input('Select option: ')
                 if option == '1':
-                    pass
+                    print('1. Groupby() | 2. Exit')
+                    while True:
+                        option = input('Select option: ')
+                        if option == '1':
+                            group = input("Group products by 'quantity_sold' or 'price': ")
+                            if group in ['quantity_sold', 'price']:
+                                if group == 'quantity_sold':
+                                    output = new_df.groupby('product')[group].sum()
+                                    print(output)
+                                elif group == 'price':
+                                    output = new_df.groupby('product')[group].sum()
+                                    print(output)
+                            else:
+                                print('Invalid input')
+                        elif option == '2':
+                            break
+                        else:
+                            print('Invalid input')
                 elif option == '2':
                     print('1. Quantity Sold | 2. Sales | 3. Profit | 4. Inventory')
                     while True:
