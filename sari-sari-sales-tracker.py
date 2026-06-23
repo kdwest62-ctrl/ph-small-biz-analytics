@@ -18,6 +18,8 @@ if path.exists():
                     end_index += 1
                     result = df.iloc[start_index:end_index].copy()
                     return result
+                else:
+                    raise ValueError('Program must use either full of filtered CSV')
             def create_df(col_name, col_data):
                 data = {'product': [i for i in products], col_name: [i for i in col_data]}
                 return pd.DataFrame(data)
