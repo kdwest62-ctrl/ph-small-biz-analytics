@@ -89,7 +89,7 @@ if path.exists():
                             quantity_sold = np.array(quantity_sold)
                             stocks = np.subtract(orders, quantity_sold)
                             print(create_df('stocks', stocks))
-                        elif rankings == '5':
+                        elif rankings == 'e':
                             break
                         else:
                             input('Invalid input')
