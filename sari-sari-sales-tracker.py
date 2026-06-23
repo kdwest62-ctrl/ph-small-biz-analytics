@@ -52,41 +52,52 @@ if path.exists():
             ref1 = dict(zip(products, quantity_sold))
             ref2 = dict(zip(products, prices))
             ref3 = dict(zip(products, sales))
-            print('1. Quantity Sold\n2. Sales\n3. Profit\n4. Inventory\n5. Exit')
+            print('Menu')
+            print('1. CSV Analysis | 2. Product Rankings | 3. Exit Program')
             while True:
-                rankings = input('Select rankings: ')
-                if rankings == '1':
-                    print(create_df('quantity_sold', ref1.values()))
-                elif rankings == '2':
-                    print(create_df('sales', ref3.values()))
-                elif rankings == '3':
-                    exp = []
-                    print('Input total expenses for each product')
-                    for p in products:
-                        expense = int(input(f'{p}: '))
-                        exp.append(expense)
-                    expenses = np.array(exp)
-                    profits = np.subtract(sales, expenses)
-                    print(create_df('profit', profits))
-                elif rankings == '4':
-                    orders = []
-                    for p in products:
-                        order = int(input(f'{p} sold {ref1[p]} | items ordered: '))
-                        if order >= ref1[p]:
-                            orders.append(order)
+                option = input('Select option: ')
+                if option == '1':
+                    pass
+                elif option == '2':
+                    print('1. Quantity Sold | 2. Sales | 3. Profit | 4. Inventory')
+                    while True:
+                        rankings = input('Select rankings ("e" to exit): ')
+                        if rankings == '1':
+                            print(create_df('quantity_sold', ref1.values()))
+                        elif rankings == '2':
+                            print(create_df('sales', ref3.values()))
+                        elif rankings == '3':
+                            exp = []
+                            print('Input total expenses for each product')
+                            for p in products:
+                                expense = int(input(f'{p}: '))
+                                exp.append(expense)
+                            expenses = np.array(exp)
+                            profits = np.subtract(sales, expenses)
+                            print(create_df('profit', profits))
+                        elif rankings == '4':
+                            orders = []
+                            for p in products:
+                                order = int(input(f'{p} sold {ref1[p]} | items ordered: '))
+                                if order >= ref1[p]:
+                                    orders.append(order)
+                                else:
+                                    print('Items ordered cannot be less than quantity sold')
+                                    print(f'Items ordered for {p}: 0')
+                                    orders.append(0)
+                            orders = np.array(orders)
+                            quantity_sold = np.array(quantity_sold)
+                            stocks = np.subtract(orders, quantity_sold)
+                            print(create_df('stocks', stocks))
+                        elif rankings == '5':
+                            break
                         else:
-                            print('Items ordered cannot be less than quantity sold')
-                            print(f'Items ordered for {p}: 0')
-                            orders.append(0)
-                    orders = np.array(orders)
-                    quantity_sold = np.array(quantity_sold)
-                    stocks = np.subtract(orders, quantity_sold)
-                    print(create_df('stocks', stocks))
-                elif rankings == '5':
+                            input('Invalid input')
+                elif option == '3':
                     print('Program closed')
                     break
                 else:
-                    print('Invalid choice')
+                    print('Invalid input')
         else:
             print('One or more columns are missing')
     else:
