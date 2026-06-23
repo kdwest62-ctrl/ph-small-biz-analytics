@@ -9,15 +9,21 @@ if path.exists():
         required_columns = ['date', 'product', 'quantity_sold', 'price']
         all_exist = set(required_columns).issubset(check_csv.columns)
         if all_exist:
-            df = pd.read_csv(path)
-            print(df.to_string())
-            start_index = int(input('Start date (number): '))
-            end_index = int(input('End date (number): '))
-            end_index += 1
-            new_df = df.iloc[start_index:end_index].copy()
+            def func_name(d, c):
+                if c == 'full':
+                    return d
+                elif c == 'filter':
+                    start_index = int(input('Start date (number): '))
+                    end_index = int(input('End date (number): '))
+                    end_index += 1
+                    result = df.iloc[start_index:end_index].copy()
+                    return result
             def create_df(col_name, col_data):
                 data = {'product': [i for i in products], col_name: [i for i in col_data]}
                 return pd.DataFrame(data)
+            df = pd.read_csv(path)
+            csv_choice = input('Use full CSV or filter dates (full/filter): ')
+            new_df = func_name(df, csv_choice)
 
             products = []
             column_data = new_df['product'].tolist()
