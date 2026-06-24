@@ -126,7 +126,20 @@ if path.exists():
                                 exp.append(expense)
                             expenses = np.array(exp)
                             profits = np.subtract(sales, expenses)
-                            print(create_df('profit', profits))
+                            ref4 = dict(zip(products, profits))
+                            print('a. Table | b. Bar Chart')
+                            while True:
+                                option = input('Select option ("e" to exit): ')
+                                if option == 'a':
+                                    sorted_data = sort_dict(ref4)
+                                    print(create_df('profit', sorted_data.values()))
+                                elif option == 'b':
+                                    sorted_data = sort_dict(ref4)
+                                    bar_chart(sorted_data.keys(), sorted_data.values(), 'Profit')
+                                elif option == 'e':
+                                    break
+                                else:
+                                    print('Invalid input')
                         elif rankings == '4':
                             orders = []
                             for p in products:
