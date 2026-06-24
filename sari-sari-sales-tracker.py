@@ -98,7 +98,8 @@ if path.exists():
                                     sorted_data = sort_dict(ref1)
                                     print(create_df('quantity_sold', sorted_data.values()))
                                 elif option == 'b':
-                                    bar_chart(ref1.keys(), ref1.values(), 'Quantity Sold')
+                                    sorted_data = sort_dict(ref1)
+                                    bar_chart(sorted_data.keys(), sorted_data.values(), 'Quantity Sold')
                                 elif option == 'e':
                                     break
                                 else:
