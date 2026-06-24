@@ -32,6 +32,9 @@ if path.exists():
                 plt.xlabel('Product')
                 plt.ylabel(col_name)
                 plt.show()
+            def sort_dict(sample_dict):
+                result_dict = dict(sorted(sample_dict.items(), key=lambda item: item[1], reverse=True))
+                return result_dict
             df = pd.read_csv(path)
             csv_choice = input('Use full CSV or filter dates (full/filter): ')
             new_df = func_name(df, csv_choice)
@@ -92,7 +95,8 @@ if path.exists():
                             while True:
                                 option = input('Select option ("e" to exit): ')
                                 if option == 'a':
-                                    print(create_df('quantity_sold', ref1.values()))
+                                    sorted_data = sort_dict(ref1)
+                                    print(create_df('quantity_sold', sorted_data.values()))
                                 elif option == 'b':
                                     bar_chart(ref1.keys(), ref1.values(), 'Quantity Sold')
                                 elif option == 'e':
