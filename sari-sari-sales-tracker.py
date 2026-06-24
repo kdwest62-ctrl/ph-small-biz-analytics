@@ -153,7 +153,20 @@ if path.exists():
                             orders = np.array(orders)
                             quantity_sold = np.array(quantity_sold)
                             stocks = np.subtract(orders, quantity_sold)
-                            print(create_df('stocks', stocks))
+                            ref5 = dict(zip(products, stocks))
+                            print('a. Table | b. Bar Chart')
+                            while True:
+                                option = input('Select option ("e" to exit): ')
+                                if option == 'a':
+                                    sorted_data = sort_dict(ref5)
+                                    print(create_df('stocks', sorted_data.values()))
+                                elif option == 'b':
+                                    sorted_data = sort_dict(ref5)
+                                    bar_chart(sorted_data.keys(), sorted_data.values(), 'Stocks')
+                                elif option == 'e':
+                                    break
+                                else:
+                                    print('Invalid input')
                         elif rankings == 'e':
                             break
                         else:
