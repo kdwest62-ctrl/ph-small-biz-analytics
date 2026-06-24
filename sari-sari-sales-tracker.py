@@ -105,7 +105,19 @@ if path.exists():
                                 else:
                                     print('Invalid input')
                         elif rankings == '2':
-                            print(create_df('sales', ref3.values()))
+                            print('a. Table | b. Bar Chart')
+                            while True:
+                                option = input('Select option ("e" to exit): ')
+                                if option == 'a':
+                                    sorted_data = sort_dict(ref3)
+                                    print(create_df('sales', sorted_data.values()))
+                                elif option == 'b':
+                                    sorted_data = sort_dict(ref3)
+                                    bar_chart(sorted_data.keys(), sorted_data.values(), 'Sales')
+                                elif option == 'e':
+                                    break
+                                else:
+                                    print('Invalid input')
                         elif rankings == '3':
                             exp = []
                             print('Input total expenses for each product')
