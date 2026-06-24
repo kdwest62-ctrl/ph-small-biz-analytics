@@ -25,13 +25,12 @@ if path.exists():
             def create_df(col_name, col_data):
                 data = {'product': [i for i in products], col_name: [i for i in col_data]}
                 return pd.DataFrame(data)
-            def bar_chart(c, v, col_name, plot_title):
+            def bar_chart(c, v, col_name):
                 categories = [i for i in c]
                 values = [i for i in v]
                 plt.bar(categories, values, color='skyblue')
                 plt.xlabel('Product')
                 plt.ylabel(col_name)
-                plt.title(plot_title)
                 plt.show()
             df = pd.read_csv(path)
             csv_choice = input('Use full CSV or filter dates (full/filter): ')
@@ -89,7 +88,17 @@ if path.exists():
                     while True:
                         rankings = input('Select rankings ("e" to exit): ')
                         if rankings == '1':
-                            print(create_df('quantity_sold', ref1.values()))
+                            print('a. Table | b. Bar Chart')
+                            while True:
+                                option = input('Select option ("e" to exit): ')
+                                if option == 'a':
+                                    print(create_df('quantity_sold', ref1.values()))
+                                elif option == 'b':
+                                    bar_chart(ref1.keys(), ref1.values(), 'Quantity Sold')
+                                elif option == 'e':
+                                    break
+                                else:
+                                    print('Invalid input')
                         elif rankings == '2':
                             print(create_df('sales', ref3.values()))
                         elif rankings == '3':
