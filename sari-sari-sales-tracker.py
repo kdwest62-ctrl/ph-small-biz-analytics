@@ -14,7 +14,6 @@ if path.exists():
                 if user_choice == 'a':
                     return csv
                 elif user_choice == 'b':
-                    print(csv.to_string())
                     start_index = int(input('Start date (number): '))
                     end_index = int(input('End date (number): '))
                     end_index += 1
@@ -22,8 +21,8 @@ if path.exists():
                     return result
                 else:
                     raise ValueError('Program must use either full or filtered CSV')
-            def create_df(col_name, prod_data, col_data):
-                data = {'product': [i for i in prod_data], col_name: [i for i in col_data]}
+            def create_df(product_data, col_name, col_data):
+                data = {'product': [i for i in product_data], col_name: [i for i in col_data]}
                 return pd.DataFrame(data)
             def bar_chart(c, v, col_name):
                 categories = [i for i in c]
@@ -36,7 +35,8 @@ if path.exists():
                 result_dict = dict(sorted(sample_dict.items(), key=lambda item: item[1], reverse=True))
                 return result_dict
             df = pd.read_csv(path)
-            csv_choice = input('Use (a) full CSV or (b) select dates of CSV: ')
+            print(df.to_string())
+            csv_choice = input('Use (a) full CSV or (b) select dates: ')
             new_df = get_dates(df, csv_choice)
             print(new_df)
             products = []
@@ -100,7 +100,7 @@ if path.exists():
                                 option = input('Select option ("e" to exit): ')
                                 if option == 'a':
                                     sorted_data = sort_dict(ref1)
-                                    print(create_df('quantity_sold', sorted_data.keys(), sorted_data.values()))
+                                    print(create_df(sorted_data.keys(), 'quantity_sold', sorted_data.values()))
                                 elif option == 'b':
                                     sorted_data = sort_dict(ref1)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Quantity Sold')
@@ -114,7 +114,7 @@ if path.exists():
                                 option = input('Select option ("e" to exit): ')
                                 if option == 'a':
                                     sorted_data = sort_dict(ref3)
-                                    print(create_df('sales', sorted_data.keys(), sorted_data.values()))
+                                    print(create_df(sorted_data.keys(), 'sales', sorted_data.values()))
                                 elif option == 'b':
                                     sorted_data = sort_dict(ref3)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Sales')
@@ -136,7 +136,7 @@ if path.exists():
                                 option = input('Select option ("e" to exit): ')
                                 if option == 'a':
                                     sorted_data = sort_dict(ref4)
-                                    print(create_df('profit', sorted_data.keys(), sorted_data.values()))
+                                    print(create_df(sorted_data.keys(), 'profit', sorted_data.values()))
                                 elif option == 'b':
                                     sorted_data = sort_dict(ref4)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Profit')
@@ -163,7 +163,7 @@ if path.exists():
                                 option = input('Select option ("e" to exit): ')
                                 if option == 'a':
                                     sorted_data = sort_dict(ref5)
-                                    print(create_df('stocks', sorted_data.keys(), sorted_data.values()))
+                                    print(create_df(sorted_data.keys(), 'stocks', sorted_data.values()))
                                 elif option == 'b':
                                     sorted_data = sort_dict(ref5)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Stocks')
