@@ -10,7 +10,7 @@ if path.exists():
         required_columns = ['date', 'product', 'quantity_sold', 'price']
         all_exist = set(required_columns).issubset(check_csv.columns)
         if all_exist:
-            def func_name(d, c):
+            def get_dates(d, c):
                 if c == 'full':
                     return d
                 elif c == 'filter':
@@ -37,7 +37,7 @@ if path.exists():
                 return result_dict
             df = pd.read_csv(path)
             csv_choice = input('Use full CSV or filter dates (full/filter): ')
-            new_df = func_name(df, csv_choice)
+            new_df = get_dates(df, csv_choice)
             products = []
             column_data = new_df['product'].tolist()
             for entry in column_data:
