@@ -24,9 +24,7 @@ if path.exists():
             def create_df(product_data, col_name, col_data):
                 data = {'product': [i for i in product_data], col_name: [i for i in col_data]}
                 return pd.DataFrame(data)
-            def bar_chart(c, v, col_name):
-                categories = [i for i in c]
-                values = [i for i in v]
+            def bar_chart(categories, values, col_name):
                 plt.bar(categories, values, color='skyblue')
                 plt.xlabel('Product')
                 plt.ylabel(col_name)
@@ -36,7 +34,7 @@ if path.exists():
                 return result_dict
             df = pd.read_csv(path)
             print(df.to_string())
-            csv_choice = input('Use (a) full CSV or (b) select dates: ')
+            csv_choice = input('Use (a) full CSV or (b) select range of dates: ')
             new_df = get_dates(df, csv_choice)
             print(new_df)
             products = []
