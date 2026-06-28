@@ -34,8 +34,8 @@ if path.exists():
                 return result_dict
             df = pd.read_csv(path)
             print(df.to_string())
-            csv_choice = input('Use (a) full CSV or (b) select range of dates: ')
-            new_df = get_dates(df, csv_choice)
+            choice = input('Use (a) full CSV or (b) select range of dates: ')
+            new_df = get_dates(df, choice)
             print(new_df)
             products = []
             column_data = new_df['product'].tolist()
