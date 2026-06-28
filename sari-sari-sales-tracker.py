@@ -63,39 +63,31 @@ if path.exists():
             ref2 = dict(zip(products, prices))
             ref3 = dict(zip(products, sales))
             print('Menu')
-            print('1. CSV Analysis | 2. Product Rankings | 3. Exit Program')
+            print('1. Product Groups | 2. Product Rankings | 3. Exit Program')
             while True:
-                option = input('Select option: ')
+                option = input('Option: ')
                 if option == '1':
-                    print('1. Groupby() | 2. Exit')
+                    print('a. Date | b. Quantity Sold | c. Price')
                     while True:
-                        option = input('Select option: ')
-                        if option == '1':
-                            group = input("Group products by 'date', 'quantity_sold', or 'price': ")
-                            if group in ['date', 'quantity_sold', 'price']:
-                                if group == 'date':
-                                    output = new_df.groupby('product')[group].sum()
-                                    print(output)
-                                elif group == 'quantity_sold':
-                                    output = new_df.groupby('product')[group].sum()
-                                    print(output)
-                                elif group == 'price':
-                                    output = new_df.groupby('product')[group].sum()
-                                    print(output)
-                            else:
-                                print('Invalid input')
-                        elif option == '2':
+                        option = input('Group (e to Exit): ')
+                        if option == 'a':
+                            print(new_df.groupby('product')['date'].sum())
+                        elif option == 'b':
+                            print(new_df.groupby('product')['quantity_sold'].sum())
+                        elif option == 'c':
+                            print(new_df.groupby('product')['price'].sum())
+                        elif option == 'e':
                             break
                         else:
                             print('Invalid input')
                 elif option == '2':
                     print('1. Quantity Sold | 2. Sales | 3. Profit | 4. Inventory')
                     while True:
-                        rankings = input('Select rankings ("e" to exit): ')
+                        rankings = input('Rankings (e to exit): ')
                         if rankings == '1':
                             print('a. Table | b. Bar Chart')
                             while True:
-                                option = input('Select option ("e" to exit): ')
+                                option = input('Presentation (e to exit): ')
                                 if option == 'a':
                                     sorted_data = sort_dict(ref1)
                                     print(create_df(sorted_data.keys(), 'quantity_sold', sorted_data.values()))
@@ -109,7 +101,7 @@ if path.exists():
                         elif rankings == '2':
                             print('a. Table | b. Bar Chart')
                             while True:
-                                option = input('Select option ("e" to exit): ')
+                                option = input('Presentation (e to exit): ')
                                 if option == 'a':
                                     sorted_data = sort_dict(ref3)
                                     print(create_df(sorted_data.keys(), 'sales', sorted_data.values()))
@@ -128,15 +120,15 @@ if path.exists():
                                 exp.append(expense)
                             expenses = np.array(exp)
                             profits = np.subtract(sales, expenses)
-                            ref4 = dict(zip(products, profits))
+                            product_profits = dict(zip(products, profits))
                             print('a. Table | b. Bar Chart')
                             while True:
-                                option = input('Select option ("e" to exit): ')
+                                option = input('Presentation (e to exit): ')
                                 if option == 'a':
-                                    sorted_data = sort_dict(ref4)
+                                    sorted_data = sort_dict(product_profits)
                                     print(create_df(sorted_data.keys(), 'profit', sorted_data.values()))
                                 elif option == 'b':
-                                    sorted_data = sort_dict(ref4)
+                                    sorted_data = sort_dict(product_profits)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Profit')
                                 elif option == 'e':
                                     break
@@ -155,15 +147,15 @@ if path.exists():
                             orders = np.array(orders)
                             quantity_sold = np.array(quantity_sold)
                             stocks = np.subtract(orders, quantity_sold)
-                            ref5 = dict(zip(products, stocks))
+                            product_stocks = dict(zip(products, stocks))
                             print('a. Table | b. Bar Chart')
                             while True:
-                                option = input('Select option ("e" to exit): ')
+                                option = input('Presentation (e to exit): ')
                                 if option == 'a':
-                                    sorted_data = sort_dict(ref5)
+                                    sorted_data = sort_dict(product_stocks)
                                     print(create_df(sorted_data.keys(), 'stocks', sorted_data.values()))
                                 elif option == 'b':
-                                    sorted_data = sort_dict(ref5)
+                                    sorted_data = sort_dict(product_stocks)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Stocks')
                                 elif option == 'e':
                                     break
