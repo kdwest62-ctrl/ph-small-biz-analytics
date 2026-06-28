@@ -62,9 +62,8 @@ if path.exists():
             product_sold = dict(zip(products, quantity_sold))
             product_prices = dict(zip(products, prices))
             product_sales = dict(zip(products, sales))
-            print('Menu')
-            print('1. Product Groups | 2. Product Rankings | 3. Exit Program')
             while True:
+                print('1. Product Groups | 2. Product Rankings | 3. Exit Program')
                 option = input('Option: ')
                 if option == '1':
                     print('a. Date | b. Quantity Sold | c. Price')
@@ -81,12 +80,12 @@ if path.exists():
                         else:
                             print('Invalid input')
                 elif option == '2':
-                    print('1. Quantity Sold | 2. Sales | 3. Profit | 4. Inventory')
                     while True:
+                        print('1. Quantity Sold | 2. Sales | 3. Profit | 4. Inventory')
                         rankings = input('Rankings (e to exit): ')
                         if rankings == '1':
-                            print('a. Table | b. Bar Chart')
                             while True:
+                                print('a. Table | b. Bar Chart')
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
                                     sorted_data = sort_dict(product_sold)
@@ -99,8 +98,8 @@ if path.exists():
                                 else:
                                     print('Invalid input')
                         elif rankings == '2':
-                            print('a. Table | b. Bar Chart')
                             while True:
+                                print('a. Table | b. Bar Chart')
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
                                     sorted_data = sort_dict(product_sales)
@@ -121,8 +120,8 @@ if path.exists():
                             expenses = np.array(exp)
                             profits = np.subtract(sales, expenses)
                             product_profits = dict(zip(products, profits))
-                            print('a. Table | b. Bar Chart')
                             while True:
+                                print('a. Table | b. Bar Chart')
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
                                     sorted_data = sort_dict(product_profits)
@@ -146,8 +145,8 @@ if path.exists():
                             quantity_sold = np.array(quantity_sold)
                             stocks = np.subtract(orders, quantity_sold)
                             product_stocks = dict(zip(products, stocks))
-                            print('a. Table | b. Bar Chart')
                             while True:
+                                print('a. Table | b. Bar Chart')
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
                                     sorted_data = sort_dict(product_stocks)
