@@ -29,9 +29,8 @@ if path.exists():
                 plt.xlabel('Product')
                 plt.ylabel(col_name)
                 plt.show()
-            def sort_dict(sample_dict):
-                result_dict = dict(sorted(sample_dict.items(), key=lambda item: item[1], reverse=True))
-                return result_dict
+            def create_rankings(sample):
+                return dict(sorted(sample.items(), key=lambda item: item[1], reverse=True))
             df = pd.read_csv(path)
             print(df.to_string())
             choice = input('Use (a) full CSV or (b) select range of dates: ')
@@ -88,10 +87,10 @@ if path.exists():
                                 print('a. Table | b. Bar Chart')
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
-                                    sorted_data = sort_dict(product_sold)
+                                    sorted_data = create_rankings(product_sold)
                                     print(create_df(sorted_data.keys(), 'quantity_sold', sorted_data.values()))
                                 elif option == 'b':
-                                    sorted_data = sort_dict(product_sold)
+                                    sorted_data = create_rankings(product_sold)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Quantity Sold')
                                 elif option == 'e':
                                     break
@@ -102,10 +101,10 @@ if path.exists():
                                 print('a. Table | b. Bar Chart')
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
-                                    sorted_data = sort_dict(product_sales)
+                                    sorted_data = create_rankings(product_sales)
                                     print(create_df(sorted_data.keys(), 'sales', sorted_data.values()))
                                 elif option == 'b':
-                                    sorted_data = sort_dict(product_sales)
+                                    sorted_data = create_rankings(product_sales)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Sales')
                                 elif option == 'e':
                                     break
@@ -124,10 +123,10 @@ if path.exists():
                                 print('a. Table | b. Bar Chart')
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
-                                    sorted_data = sort_dict(product_profits)
+                                    sorted_data = create_rankings(product_profits)
                                     print(create_df(sorted_data.keys(), 'profit', sorted_data.values()))
                                 elif option == 'b':
-                                    sorted_data = sort_dict(product_profits)
+                                    sorted_data = create_rankings(product_profits)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Profit')
                                 elif option == 'e':
                                     break
@@ -149,10 +148,10 @@ if path.exists():
                                 print('a. Table | b. Bar Chart')
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
-                                    sorted_data = sort_dict(product_stocks)
+                                    sorted_data = create_rankings(product_stocks)
                                     print(create_df(sorted_data.keys(), 'stocks', sorted_data.values()))
                                 elif option == 'b':
-                                    sorted_data = sort_dict(product_stocks)
+                                    sorted_data = create_rankings(product_stocks)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Stocks')
                                 elif option == 'e':
                                     break
