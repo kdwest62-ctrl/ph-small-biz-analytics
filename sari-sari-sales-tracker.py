@@ -66,8 +66,9 @@ if path.exists():
                 print('1. Product Groups | 2. Product Rankings | 3. Exit Program')
                 option = input('Option: ')
                 if option == '1':
-                    print('a. Date | b. Quantity Sold | c. Price')
                     while True:
+                        print('-' * 8)
+                        print('a. Date | b. Quantity Sold | c. Price')
                         option = input('Group (e to Exit): ')
                         if option == 'a':
                             print(new_df.groupby('product')['date'].sum())
