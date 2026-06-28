@@ -59,9 +59,9 @@ if path.exists():
             arr1 = np.array(quantity_sold)
             arr2 = np.array(prices)
             sales = np.multiply(arr1, arr2)
-            ref1 = dict(zip(products, quantity_sold))
-            ref2 = dict(zip(products, prices))
-            ref3 = dict(zip(products, sales))
+            product_sold = dict(zip(products, quantity_sold))
+            product_prices = dict(zip(products, prices))
+            product_sales = dict(zip(products, sales))
             print('Menu')
             print('1. Product Groups | 2. Product Rankings | 3. Exit Program')
             while True:
@@ -89,10 +89,10 @@ if path.exists():
                             while True:
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
-                                    sorted_data = sort_dict(ref1)
+                                    sorted_data = sort_dict(product_sold)
                                     print(create_df(sorted_data.keys(), 'quantity_sold', sorted_data.values()))
                                 elif option == 'b':
-                                    sorted_data = sort_dict(ref1)
+                                    sorted_data = sort_dict(product_sold)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Quantity Sold')
                                 elif option == 'e':
                                     break
@@ -103,10 +103,10 @@ if path.exists():
                             while True:
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
-                                    sorted_data = sort_dict(ref3)
+                                    sorted_data = sort_dict(product_sales)
                                     print(create_df(sorted_data.keys(), 'sales', sorted_data.values()))
                                 elif option == 'b':
-                                    sorted_data = sort_dict(ref3)
+                                    sorted_data = sort_dict(product_sales)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Sales')
                                 elif option == 'e':
                                     break
@@ -137,13 +137,11 @@ if path.exists():
                         elif rankings == '4':
                             orders = []
                             for p in products:
-                                order = int(input(f'{p} sold {ref1[p]} | items ordered: '))
-                                if order >= ref1[p]:
+                                order = int(input(f'{p} sold {product_sold[p]} | items ordered: '))
+                                if order >= product_sold[p]:
                                     orders.append(order)
                                 else:
-                                    print('Items ordered cannot be less than quantity sold')
-                                    print(f'Items ordered for {p}: 0')
-                                    orders.append(0)
+                                    raise ValueError('Items ordered cannot be less than quantity sold')
                             orders = np.array(orders)
                             quantity_sold = np.array(quantity_sold)
                             stocks = np.subtract(orders, quantity_sold)
