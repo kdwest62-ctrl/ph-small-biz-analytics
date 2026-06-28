@@ -56,9 +56,9 @@ if path.exists():
                     price = new_df[new_df['product'] == product]['price'].values[0]
                     quantity_sold.append(sales)
                     prices.append(price)
-            arr1 = np.array(quantity_sold)
-            arr2 = np.array(prices)
-            sales = np.multiply(arr1, arr2)
+            quantity_sold = np.array(quantity_sold)
+            prices = np.array(prices)
+            sales = np.multiply(quantity_sold, prices)
             product_sold = dict(zip(products, quantity_sold))
             product_prices = dict(zip(products, prices))
             product_sales = dict(zip(products, sales))
