@@ -62,6 +62,7 @@ if path.exists():
             product_prices = dict(zip(products, prices))
             product_sales = dict(zip(products, sales))
             while True:
+                print('-' * 8)
                 print('1. Product Groups | 2. Product Rankings | 3. Exit Program')
                 option = input('Option: ')
                 if option == '1':
@@ -80,7 +81,8 @@ if path.exists():
                             print('Invalid input')
                 elif option == '2':
                     while True:
-                        print('1. Quantity Sold | 2. Sales | 3. Profit | 4. Inventory')
+                        print('-' * 8)
+                        print('1. Quantity Sold\n2. Sales\n3. Profit\n4. Inventory')
                         rankings = input('Rankings (e to exit): ')
                         if rankings == '1':
                             while True:
@@ -88,7 +90,9 @@ if path.exists():
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
                                     sorted_data = create_rankings(product_sold)
+                                    print('-' * 8)
                                     print(create_df(sorted_data.keys(), 'quantity_sold', sorted_data.values()))
+                                    print('-' * 8)
                                 elif option == 'b':
                                     sorted_data = create_rankings(product_sold)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Quantity Sold')
@@ -102,7 +106,9 @@ if path.exists():
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
                                     sorted_data = create_rankings(product_sales)
+                                    print('-' * 8)
                                     print(create_df(sorted_data.keys(), 'sales', sorted_data.values()))
+                                    print('-' * 8)
                                 elif option == 'b':
                                     sorted_data = create_rankings(product_sales)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Sales')
@@ -124,7 +130,9 @@ if path.exists():
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
                                     sorted_data = create_rankings(product_profits)
+                                    print('-' * 8)
                                     print(create_df(sorted_data.keys(), 'profit', sorted_data.values()))
+                                    print('-' * 8)
                                 elif option == 'b':
                                     sorted_data = create_rankings(product_profits)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Profit')
@@ -149,7 +157,9 @@ if path.exists():
                                 option = input('Presentation (e to exit): ')
                                 if option == 'a':
                                     sorted_data = create_rankings(product_stocks)
+                                    print('-' * 8)
                                     print(create_df(sorted_data.keys(), 'stocks', sorted_data.values()))
+                                    print('-' * 8)
                                 elif option == 'b':
                                     sorted_data = create_rankings(product_stocks)
                                     bar_chart(sorted_data.keys(), sorted_data.values(), 'Stocks')
