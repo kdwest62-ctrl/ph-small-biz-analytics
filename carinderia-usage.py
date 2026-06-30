@@ -4,5 +4,7 @@ path = Path(input("CSV path: "))
 if path.exists():
     if path.suffix == ".csv":
         print("Success")
+    else:
+        print("File not csv")
 else:
     print("Path does not exist")
