@@ -2,6 +2,7 @@ from pathlib import Path
 
 path = Path(input("CSV path: "))
 if path.exists():
-    print('Path exists')
+    if path.suffix == ".csv":
+        print("Success")
 else:
     print("Path does not exist")
