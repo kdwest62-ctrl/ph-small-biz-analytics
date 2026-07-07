@@ -22,7 +22,6 @@ if path.exists():
             print(df.to_string())
             choice = input('Use (a) full CSV or (b) select range of dates: ')
             new_df = get_dates(df, choice)
-            print(new_df.to_string())
             print('-' * 8)
             print('1. Average Usage\n2. Actual + Predicted Usage\n3. Forecast Needs\n4. Exit')
             while True:
