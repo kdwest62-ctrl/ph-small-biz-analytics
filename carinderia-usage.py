@@ -12,8 +12,8 @@ if path.exists():
                 if user_choice == 'a':
                     return csv
                 elif user_choice == 'b':
-                    start_index = int(input('Start date (number): '))
-                    end_index = int(input('End date (number): '))
+                    start_index = int(input('Start date (index): '))
+                    end_index = int(input('End date (index): '))
                     end_index += 1
                     result = csv.iloc[start_index:end_index].copy()
                     return result
@@ -23,6 +23,19 @@ if path.exists():
             choice = input('Use (a) full CSV or (b) select range of dates: ')
             new_df = get_dates(df, choice)
             print(new_df.to_string())
+            print('-' * 8)
+            print('1. Average Usage\n2. Actual + Predicted Usage\n3. Forecast Needs\n4. Exit')
+            while True:
+                option = input('Option: ')
+                if option == '1':
+                    pass
+                elif option == '2':
+                    pass
+                elif option == '3':
+                    pass
+                elif option == '4':
+                    print('Program closed')
+                    break
     else:
         print("File not csv")
 else:
