@@ -1,5 +1,6 @@
 from pathlib import Path
 import pandas as pd
+import numpy as np
 
 path = Path(input("CSV path: "))
 if path.exists():
@@ -27,7 +28,23 @@ if path.exists():
             while True:
                 option = input('Option: ')
                 if option == '1':
-                    pass
+                    total = int(input('Number of columns to compare: '))
+                    averages = []
+                    columns = []
+                    count = 1
+                    while count <= total:
+                        col_name = input(f'Column {count}: ')
+                        check = pd.read_csv(path, nrows=0)
+                        if col_name in check.columns:
+                            columns.append(col_name)
+                            col_data = np.array(new_df[col_name].tolist())
+                            col_avg = np.mean(col_data)
+                            averages.append(col_avg)
+                            count += 1
+                        else:
+                            print('Column does not exist')
+                    reference = dict(zip(columns, averages))
+                    print(reference)
                 elif option == '2':
                     pass
                 elif option == '3':
