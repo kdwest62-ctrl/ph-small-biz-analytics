@@ -46,8 +46,8 @@ if path.exists():
                         else:
                             print('Column does not exist')
                     reference = dict(zip(columns, averages))
-                    sorted_dict = create_rankings(reference)
-                    print(sorted_dict)
+                    rankings = create_rankings(reference)
+                    print(rankings)
                 elif option == '2':
                     pass
                 elif option == '3':
