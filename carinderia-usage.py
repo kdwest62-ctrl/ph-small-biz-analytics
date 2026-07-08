@@ -20,6 +20,8 @@ if path.exists():
                     return result
                 else:
                     raise ValueError('Program must use either full or filtered CSV')
+            def create_rankings(sample):
+                return dict(sorted(sample.items(), key=lambda item: item[1], reverse=True))
             print(df.to_string())
             choice = input('Use (a) full CSV or (b) select range of dates: ')
             new_df = get_dates(df, choice)
@@ -44,7 +46,8 @@ if path.exists():
                         else:
                             print('Column does not exist')
                     reference = dict(zip(columns, averages))
-                    print(reference)
+                    sorted_dict = create_rankings(reference)
+                    print(sorted_dict)
                 elif option == '2':
                     pass
                 elif option == '3':
