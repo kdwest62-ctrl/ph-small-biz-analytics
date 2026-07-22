@@ -2,9 +2,9 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 
-path = Path(input("CSV path: "))
+path = Path(input('CSV path: '))
 if path.exists():
-    if path.suffix == ".csv":
+    if path.suffix == '.csv':
         df = pd.read_csv(path)
         if df.empty:
             print("CSV is empty")
@@ -16,8 +16,7 @@ if path.exists():
                     start_index = int(input('Start date (index): '))
                     end_index = int(input('End date (index): '))
                     end_index += 1
-                    result = csv.iloc[start_index:end_index].copy()
-                    return result
+                    return csv.iloc[start_index:end_index].copy()
                 else:
                     raise ValueError('Program must use either full or filtered CSV')
             def create_rankings(sample):
@@ -30,24 +29,27 @@ if path.exists():
             while True:
                 option = input('Option: ')
                 if option == '1':
-                    total = int(input('Number of columns to compare: '))
+                    total = int(input('Number of ingredients to compare: '))
                     averages = []
-                    columns = []
+                    ingredients = []
                     count = 1
                     while count <= total:
-                        col_name = input(f'Column {count}: ')
+                        ingredient = input(f'Ingredient {count}: ')
                         check = pd.read_csv(path, nrows=0)
-                        if col_name in check.columns:
-                            columns.append(col_name)
-                            col_data = np.array(new_df[col_name].tolist())
-                            col_avg = np.mean(col_data)
-                            averages.append(col_avg)
+                        if ingredient in check.columns:
+                            ingredients.append(ingredient)
+                            col_data = np.array(new_df[ingredient].tolist())
+                            average = np.mean(col_data)
+                            averages.append(round(average, 2))
                             count += 1
                         else:
-                            print('Column does not exist')
-                    reference = dict(zip(columns, averages))
-                    rankings = create_rankings(reference)
-                    print(rankings)
+                            print('Ingredient does not exist')
+                    avg_usage = dict(zip(ingredients, averages))
+                    usage_ranked = create_rankings(avg_usage)
+                    data = {'ingredient': [i for i in usage_ranked.keys()],
+                            'average usage': [i for i in usage_ranked.values()]}
+                    result = pd.DataFrame(data)
+                    print(result.to_string())
                 elif option == '2':
                     pass
                 elif option == '3':
@@ -56,6 +58,6 @@ if path.exists():
                     print('Program closed')
                     break
     else:
-        print("File not csv")
+        print('File not csv')
 else:
-    print("Path does not exist")
+    print('Path does not exist')
