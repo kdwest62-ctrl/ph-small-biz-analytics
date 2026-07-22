@@ -25,7 +25,7 @@ if path.exists():
             choice = input('Use (a) full CSV or (b) select range of dates: ')
             new_df = get_dates(df, choice)
             print('-' * 8)
-            print('1. Average Usage\n2. Actual + Predicted Usage\n3. Forecast Needs\n4. Exit')
+            print('1. Average Usage\n2. Actual vs Predicted Usage\n3. Forecast Needs\n4. Exit')
             while True:
                 option = input('Option: ')
                 if option == '1':
