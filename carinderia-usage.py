@@ -25,38 +25,31 @@ if path.exists():
             choice = input('Use (a) full CSV or (b) select range of dates: ')
             new_df = get_dates(df, choice)
             print('-' * 8)
-            print('1. Average Usage\n2. Actual vs Predicted Usage\n3. Forecast Needs\n4. Exit')
+            print('1. Average Usage Comparison\n2. Actual vs Predicted Usage\n3. Forecast Needs\n4. Exit')
             while True:
                 option = input('Option: ')
                 if option == '1':
-                    print('a. Show\nb. Compare')
-                    choice = input('Choose: ')
-                    if choice == 'a':
-                        ingredient = input('Ingredient: ')
-                        data = np.array(df[ingredient].tolist())
-                        print(f'Average usage: {np.mean(data)}')
-                    elif choice == 'b':
-                        total = int(input('Number of ingredients to compare: '))
-                        averages = []
-                        ingredients = []
-                        count = 1
-                        while count <= total:
-                            ingredient = input(f'Ingredient {count}: ')
-                            check = pd.read_csv(path, nrows=0)
-                            if ingredient in check.columns:
-                                ingredients.append(ingredient)
-                                col_data = np.array(new_df[ingredient].tolist())
-                                average = np.mean(col_data)
-                                averages.append(round(average, 2))
-                                count += 1
-                            else:
-                                print('Ingredient does not exist')
-                        avg_usage = dict(zip(ingredients, averages))
-                        usage_ranked = create_rankings(avg_usage)
-                        data = {'ingredient': [i for i in usage_ranked.keys()],
+                    total = int(input('Number of ingredients to compare: '))
+                    averages = []
+                    ingredients = []
+                    count = 1
+                    while count <= total:
+                        ingredient = input(f'Ingredient {count}: ')
+                        check = pd.read_csv(path, nrows=0)
+                        if ingredient in check.columns:
+                            ingredients.append(ingredient)
+                            col_data = np.array(new_df[ingredient].tolist())
+                            average = np.mean(col_data)
+                            averages.append(round(average, 2))
+                            count += 1
+                        else:
+                            print('Ingredient does not exist')
+                    avg_usage = dict(zip(ingredients, averages))
+                    usage_ranked = create_rankings(avg_usage)
+                    data = {'ingredient': [i for i in usage_ranked.keys()],
                                 'average usage': [i for i in usage_ranked.values()]}
-                        result = pd.DataFrame(data)
-                        print(result.to_string())
+                    result = pd.DataFrame(data)
+                    print(result.to_string())
                 elif option == '2':
                     pass
                 elif option == '3':
