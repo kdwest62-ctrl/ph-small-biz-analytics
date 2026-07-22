@@ -26,8 +26,9 @@ if path.exists():
             new_df = get_dates(df, choice)
             print('-' * 8)
             print('1. Average Usage Comparison\n2. Actual vs Predicted Usage\n3. Forecast Needs\n4. Exit')
+            print('-' * 8)
             while True:
-                option = input('Option: ')
+                option = input('Select option: ')
                 if option == '1':
                     total = int(input('Number of ingredients to compare: '))
                     averages = []
@@ -49,7 +50,9 @@ if path.exists():
                     data = {'ingredient': [i for i in usage_ranked.keys()],
                                 'average usage': [i for i in usage_ranked.values()]}
                     result = pd.DataFrame(data)
+                    print('')
                     print(result.to_string())
+                    print('-' * 8)
                 elif option == '2':
                     pass
                 elif option == '3':
