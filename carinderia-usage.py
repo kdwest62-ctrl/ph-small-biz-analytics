@@ -48,7 +48,7 @@ if path.exists():
                     avg_usage = dict(zip(ingredients, averages))
                     usage_ranked = create_rankings(avg_usage)
                     data = {'ingredient': [i for i in usage_ranked.keys()],
-                                'average usage': [i for i in usage_ranked.values()]}
+                            'average usage': [i for i in usage_ranked.values()]}
                     result = pd.DataFrame(data)
                     print('')
                     print(result.to_string())
@@ -56,7 +56,19 @@ if path.exists():
                 elif option == '2':
                     pass
                 elif option == '3':
-                    pass
+                    def moving_average(d, window_size):
+                        weights = np.ones(window_size) / window_size
+                        return np.convolve(d, weights, mode='valid')
+                    ingredient = input('Ingredient: ')
+                    data = np.array(new_df[ingredient].tolist())
+                    print(f'Daily usage: {data}')
+                    try:
+                        size = int(input('Window size (days): '))
+                    except ValueError:
+                        print('Error! Input a number')
+                    else:
+                        print(f'Moving average: {moving_average(data, size)}')
+                        print('-' * 8)
                 elif option == '4':
                     print('Program closed')
                     break
