@@ -1,6 +1,7 @@
 from pathlib import Path
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 path = Path(input('CSV path: '))
 if path.exists():
@@ -54,7 +55,26 @@ if path.exists():
                     print(result.to_string())
                     print('-' * 8)
                 elif option == '2':
-                    pass
+                    ingredient = input('Ingredient: ')
+                    data = np.array(new_df[ingredient].to_list())
+                    unique_data = np.unique(data)
+                    probability = []
+                    for num in unique_data:
+                        num_count = np.count_nonzero(data == num)
+                        num_prob = num_count / len(data)
+                        probability.append(num_prob)
+                    result = np.random.choice(unique_data, size=len(data), p=probability)
+                    x = [n for n in range(1, len(data) + 1)]
+                    y1 = [i for i in data]
+                    y2 = [i for i in result]
+                    fig, ax = plt.subplots()
+                    ax.plot(x, y1, label='Actual', color='darkblue', linestyle='-')
+                    ax.plot(x, y2, label='Predicted', color='red', linestyle='--')
+                    ax.set_xlabel('Days')
+                    ax.set_ylabel('Ingredient Usage')
+                    ax.legend()
+                    plt.show()
+                    print('-' * 8)
                 elif option == '3':
                     def moving_average(d, window_size):
                         weights = np.ones(window_size) / window_size
