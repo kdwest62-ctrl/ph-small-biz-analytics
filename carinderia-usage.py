@@ -63,10 +63,10 @@ if path.exists():
                         num_count = np.count_nonzero(data == num)
                         num_prob = num_count / len(data)
                         probability.append(num_prob)
-                    result = np.random.choice(unique_data, size=len(data), p=probability)
+                    predicted_data = np.random.choice(unique_data, size=len(data), p=probability)
                     x = [n for n in range(1, len(data) + 1)]
                     y1 = [i for i in data]
-                    y2 = [i for i in result]
+                    y2 = [i for i in predicted_data]
                     fig, ax = plt.subplots()
                     ax.plot(x, y1, label='Actual', color='darkblue', linestyle='-')
                     ax.plot(x, y2, label='Predicted', color='red', linestyle='--')
