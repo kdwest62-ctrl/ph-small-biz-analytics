@@ -13,7 +13,7 @@ Built-in: pathlib
 External: pandas, numpy, matplotlib
 
 # Note
-This repository is still a work in progress. More projects will be added.
+This repository is still a work in progress. More scripts will be added.
 
 # License
 This project is licensed under the MIT License - see the LICENSE file for details.
