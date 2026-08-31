@@ -2,14 +2,15 @@
 Python scripts to efficiently manage a small Filipino business
 
 # Description
-ne of the problems small businesses face is how to know which products to order. Without data analysis, knowing which products to sell can become of a guesswork, of which most of the times can lead to overstocking, and expiration. The objective of this repository is to reduce overstocking by learning to record data and analyze using popular Python data analysis libraries pandas, numpy, and matplotlib.
+One problem that small businesses in the Philippines face is knowing which products to order from the supplier. Without data analysis, this can become of a guesswork, which most of the times can lead to overstocking and then expiration of goods. The objective of this repository is simple: to guide small Filipino business owners on product selection by helping them analyze the data they've gathered.
 
 # Environment
-PyCharm
+PyCharm, or any Python IDE
 
 # Libraries
-#### Built-in: pathlib
-#### External: pandas, numpy, matplotlib
+Built-in: pathlib
+
+External: pandas, numpy, matplotlib
 
 # Note
 This repository is still a work in progress. More projects will be added.
