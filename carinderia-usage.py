@@ -8,7 +8,7 @@ if path.exists():
     if path.suffix == '.csv':
         df = pd.read_csv(path)
         if df.empty:
-            print("CSV is empty")
+            print('CSV is empty')
         else:
             def get_dates(csv, user_choice):
                 if user_choice == 'a':
